@@ -8,6 +8,7 @@
   },
   "bin": {
     "isbn-info": "./lib/isbn-info.js",
+    "issn-info": "./lib/issn-info.js",
     "isbn-detect": "./lib/isbn-detect.js",
     "isbn-extract": "./src/isbn-extract.sh",
     "isbn-bulk-rename": "./src/isbn-bulk-rename.sh"
@@ -34,7 +35,7 @@
     "issn": "^1.0.6",
     "jsonld-parser": "^0.6.1",
     "meow": "^8.1.2",
-    "metascraper": "^5.21.10",
+    "node-fetch": "^2.6.1",
     "node-isbn": "^1.6.1"
   },
   "devDependencies": {

@@ -2,6 +2,8 @@
 import path from 'path';
 import meow from 'meow';
 import issn from 'issn';
+import fetch from 'node-fetch';
+import parser from 'jsonld-parser';
 
 // https://stackoverflow.com/a/54577682/209184
 function isMochaRunning(context) {
@@ -54,7 +56,12 @@ export async function issnInfo(input, OPTIONS) {
     if (!issn(input)) {
       reject(new Error(`Not a valid ISSN: ${input}`));
     } else {
-      const url = `https://portal.issn.org/resource/ISSN/${input}`;
+      fetch(`https://portal.issn.org/resource/ISSN/${input}`)
+      .then(res => res.text())
+      .then(body => {
+        const jsonld = parser().parse(body);
+        resolve(jsonld.jsonld['Periodical'][0]);
+      });
     }
   });
 }
